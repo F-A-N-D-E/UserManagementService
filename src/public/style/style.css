@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1f2020;
+    color: #e3e3e3;
+}
+
+/* nav */
+nav {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+}
+nav > a {
+    font-size: 20px;
+    margin-left: 40px;
+}
+/* /nav */
+
+/* tag */
+a {
+    text-decoration: none;
+    color: blue;
+}
+input {
+    background-color: #3c3c3c;
+    color: #e3e3e3;
+    min-height: 25px;
+    border: 0;
+    vertical-align: middle;
+    border-radius: 8px;
+    padding: 10px 20px;
+    outline: none;
+}
+
+input:focus {
+    border: 1px solid white;
+}
+
+label,
+input[type='radio'] {
+    cursor: pointer;
+}
+/* /tag */
+
+#root {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.BlockAuthorization {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+#registration,
+#login {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    gap: 30px;
+}
+
+#listTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#listTable th,
+#listTable td {
+    text-align: center;
+}
+
+#listTable th {
+    padding: 10px 0;
+}
+
+#listTable td {
+    padding: 5px 0;
+}
+
+/* Стиль для кнопки */
+button,
+input[type='submit'] {
+    background-color: #3c3c3c;
+    color: #e3e3e3;
+    border: none;
+    border-radius: 8px;
+    /* padding: 5px 20px; */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover,
+input[type='submit']:hover {
+    background-color: #2d2d2d;
+    transform: translateY(-2px);
+}
+
+button:active,
+input[type='submit']:active {
+    background-color: #1d1d1d;
+    transform: translateY(0);
+}
+/* /Стиль для кнопки */
