@@ -1,4 +1,5 @@
 import { TypeResponFromServer } from '../../../../@types/type';
+import myFetch from '../utils/myFetch.js';
 
 const BlockAuthorization = `
     <div class="BlockAuthorization">
@@ -92,14 +93,27 @@ function Form(id: 'login' | 'registration') {
                 url.set(name, value as string);
             }
 
+            myFetch('/login?' + url.toString()).then(result => {
+                if (result.err) alert(result.err);
+                else alert('Успешно');
+            });
+            /* 
             fetch('http://localhost:3000/login?' + url.toString())
                 .then(result => result.json())
                 .then((result: TypeResponFromServer) => {
                     if (result.err) alert(result.err);
                     else alert('Успешно');
-                });
+                }); */
         } else {
-            fetch('http://localhost:3000/registration', {
+            myFetch('/registration', {
+                method: 'POST',
+                body: JSON.stringify(Object.fromEntries(formData.entries())),
+            }).then(result => {
+                if (result.err) alert(result.err);
+                else alert('Успешно');
+            });
+
+            /* fetch('http://localhost:3000/registration', {
                 method: 'POST',
                 body: JSON.stringify(Object.fromEntries(formData.entries())),
             })
@@ -107,7 +121,7 @@ function Form(id: 'login' | 'registration') {
                 .then((result: TypeResponFromServer) => {
                     if (result.err) alert(result.err);
                     else alert('Успешно');
-                });
+                }); */
         }
     });
 }

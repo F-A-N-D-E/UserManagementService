@@ -21,13 +21,17 @@ import session from 'express-session';
                 secret: conf.SESSION_SECRET,
                 resave: false,
                 saveUninitialized: false,
+                cookie: {
+                    httpOnly: true,
+                },
             })
         );
 
         app.use(express.raw({ type: '*/*', limit: '10mb' }));
 
         app.use((req, res, next) => {
-            res.header('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5000');
+            res.setHeader('Access-Control-Allow-Credentials', 'true');
             next();
         });
 

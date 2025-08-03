@@ -5,13 +5,12 @@ import validBirthday from '../validation/validBirthday.js';
 import validEmail from '../validation/validEmail.js';
 import validPassword from '../validation/validPassword.js';
 import { sequelize } from '../config/Sequelize.js';
-import getSessions from '../untils/getSessions.js';
 
 const router = Router();
 
 // Промежуточное ПО для проверки аутендификации
 const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
-    if (getSessions(req).rol) {
+    if (req.session.rol) {
         next();
     } else {
         res.send({ err: 'Этой функцией может пользоваться только авторизированный пользователь' });
@@ -114,9 +113,9 @@ router.post('/registration', async (req, res) => {
 // Получить всех пользователей
 router.get('/all', isAuthenticated, async (req, res) => {
     try {
-        if (getSessions(req).rol == 'user') {
+        if (req.session.rol == 'user') {
             let [result] = await sequelize.query(`SELECT * FROM users WHERE id = :id`, {
-                replacements: { id: getSessions(req).idUser },
+                replacements: { id: req.session.idUser },
             });
             return res.send({ respon: result });
         }
@@ -140,7 +139,7 @@ router.get('/block/:id', isAuthenticated, async (req, res) => {
     try {
         let id = +req.params.id;
 
-        if (getSessions(req).rol === 'user' && getSessions(req).idUser !== id) {
+        if (req.session.rol === 'user' && req.session.idUser !== id) {
             return res.send({ err: 'Пользователь может заблокировать только сам себя' });
         }
 
@@ -174,7 +173,7 @@ router.get('/search', isAuthenticated, async (req, res) => {
 
         let id = +req.query.id;
 
-        if (getSessions(req).rol == 'user' && getSessions(req).idUser != id) {
+        if (req.session.rol == 'user' && req.session.idUser != id) {
             return res.send({ err: 'Обычные пользователи могут найти только себя' });
         }
 
