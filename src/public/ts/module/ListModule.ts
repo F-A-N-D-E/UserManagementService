@@ -34,16 +34,6 @@ export default function ListModule(root: HTMLElement) {
                 if (res.err) alert(res.err);
                 else addUsers(parentTable, res.respon);
             });
-
-            /* fetch('http://localhost:3000/search?id=' + search.value)
-                .then(res => res.json())
-                .then((res: TypeResponFromServer<TypeGetUsers[]>) => {
-                    if (res.err) alert(res.err);
-                    else {
-                        let { respon } = res;
-                        addUsers(parentTable, respon);
-                    }
-                }); */
         }
     });
 
@@ -55,16 +45,6 @@ export default function ListModule(root: HTMLElement) {
             if (res.err) alert(res.err);
             else addUsers(parentTable, res.respon);
         });
-
-        /* fetch('http://localhost:3000/all')
-            .then(res => res.json())
-            .then((res: TypeResponFromServer<TypeGetUsers[]>) => {
-                if (res.err) alert(res.err);
-                else {
-                    let { respon } = res;
-                    addUsers(parentTable, respon);
-                }
-            }); */
     });
 }
 
@@ -109,18 +89,6 @@ function addUsers(parentTable: HTMLDivElement, users: TypeGetUsers[]) {
                         block.textContent === 'Заблокировать' ? 'Разблокировать' : 'Заблокировать';
                 }
             });
-
-            /* fetch('http://localhost:3000/block/' + id)
-                .then(res => res.json())
-                .then((res: TypeResponFromServer) => {
-                    if (res.err) alert(res.err);
-                    else {
-                        status.textContent = status.textContent === 'Активен' ? 'Неактивен' : 'Активен';
-
-                        block.textContent =
-                            block.textContent === 'Заблокировать' ? 'Разблокировать' : 'Заблокировать';
-                    }
-                }); */
         });
 
         table.appendChild(tr);

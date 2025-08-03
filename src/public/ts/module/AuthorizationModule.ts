@@ -97,13 +97,6 @@ function Form(id: 'login' | 'registration') {
                 if (result.err) alert(result.err);
                 else alert('Успешно');
             });
-            /* 
-            fetch('http://localhost:3000/login?' + url.toString())
-                .then(result => result.json())
-                .then((result: TypeResponFromServer) => {
-                    if (result.err) alert(result.err);
-                    else alert('Успешно');
-                }); */
         } else {
             myFetch('/registration', {
                 method: 'POST',
@@ -112,16 +105,6 @@ function Form(id: 'login' | 'registration') {
                 if (result.err) alert(result.err);
                 else alert('Успешно');
             });
-
-            /* fetch('http://localhost:3000/registration', {
-                method: 'POST',
-                body: JSON.stringify(Object.fromEntries(formData.entries())),
-            })
-                .then(result => result.json())
-                .then((result: TypeResponFromServer) => {
-                    if (result.err) alert(result.err);
-                    else alert('Успешно');
-                }); */
         }
     });
 }
