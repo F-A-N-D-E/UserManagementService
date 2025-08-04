@@ -13,7 +13,7 @@ const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
     if (req.session.rol) {
         next();
     } else {
-        res.send({ err: 'Этой функцией может пользоваться только авторизированный пользователь' });
+        return res.send({ err: 'Этой функцией может пользоваться только авторизированный пользователь' });
     }
 };
 
